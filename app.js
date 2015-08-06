@@ -25,6 +25,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', routes);
 //app.use('/users', users);
 
+var Ho = {
+  talk: function(req, res, next) {
+    if (req.query.user === 'Ho') { 
+      console.log(">> Ho: %s", req.query.talk); 
+      res.end('>> Ho: ', req.query.talk)
+    } else next();
+  }
+};
+var Dat = {
+  talk: function(req, res, next) {
+    if (req.query.user === 'Dat') { 
+      console.log(">> Dat: %s", req.query.talk); 
+      res.end('>> Dat: ', req.query.talk)
+    } else next();
+  }
+};
+var Hy = {
+  talk: function(req, res, next) {
+    if (req.query.user === 'Hy') { 
+      console.log(">> Hy: %s", req.query.talk); 
+      res.end('>> Hy: ', req.query.talk)
+    } else next();
+  }
+}
+
+app.use('/php', Ho.talk, Dat.talk, Hy.talk);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
