@@ -25,12 +25,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', routes);
 //app.use('/users', users);
 
+var Ho = function(req, res, next) {
+  if (req.query.user === 'Ho') { 
+    console.log(">> Ho: Yes Sir!"); 
+    res.end('>> Ho: Yes Sir!')
+  } else next();
+}
+var Dat = function(req, res, next) {
+  if (req.query.user === 'Dat') {
+    console.log(">> Dat: Yes Sir!"); 
+    res.end('>> Dat: Yes Sir!')
+  } else next();
+}
+var Hy = function(req, res, next) {
+  if (req.query.user === 'Hy') {
+    console.log(">> Hy: Yes Sir!"); 
+    res.end('>> Hy: Yes Sir!')
+  } else {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  }
+}
+
+app.use('/php', Ho, Dat, Hy);
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+//app.use(function(req, res, next) {
+//  var err = new Error('Not Found');
+//  err.status = 404;
+//  next(err);
+//});
 
 // error handlers
 
@@ -39,6 +64,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    console.log(err.message);
     res.render('error', {
       message: err.message,
       error: err
