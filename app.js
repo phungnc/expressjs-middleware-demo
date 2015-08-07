@@ -5,8 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+//var routes = require('./routes/index');
+//var users = require('./routes/users');
 
 var app = express();
 
@@ -23,32 +23,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
-//app.use('/users', users);
-
-var Ho = {
-  talk: function(req, res, next) {
-    if (req.query.user === 'Ho') { 
-      console.log(">> Ho: %s", req.query.talk); 
-      res.end('>> Ho: ', req.query.talk)
-    } else next();
-  }
-};
-var Dat = {
-  talk: function(req, res, next) {
-    if (req.query.user === 'Dat') { 
-      console.log(">> Dat: %s", req.query.talk); 
-      res.end('>> Dat: ', req.query.talk)
-    } else next();
-  }
-};
-var Hy = {
-  talk: function(req, res, next) {
-    if (req.query.user === 'Hy') { 
-      console.log(">> Hy: %s", req.query.talk); 
-      res.end('>> Hy: ', req.query.talk)
-    } else next();
-  }
-}
+//app.use('/users', users);Hy
+var Ho = require('./ho.js');
+var Dat = require('./dat.js');
+var Hy = require('./hy.js');
 
 app.use('/php', Ho.talk, Dat.talk, Hy.talk);
 
