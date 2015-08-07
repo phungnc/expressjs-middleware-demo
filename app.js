@@ -24,11 +24,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
 //app.use('/users', users);Hy
-var Ho = require('./ho.js');
-var Dat = require('./dat.js');
-var Hy = require('./hy.js');
+//var Ho = require('./ho.js');
+//var Dat = require('./dat.js');
+//var Hy = require('./hy.js');
+//
+//app.use('/php', Ho.talk, Dat.talk, Hy.talk);
+var user = require('./user.js');
 
-app.use('/php', Ho.talk, Dat.talk, Hy.talk);
+app.use('/php', user.isExist, user.talk);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
