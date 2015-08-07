@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //var Hy = require('./hy.js');
 //
 //app.use('/php', Ho.talk, Dat.talk, Hy.talk);
-var user = require('./user.js');
+var user = require('./controllers/users.js');
 
 app.use('/php', user.isExist, user.talk);
 
