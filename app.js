@@ -23,6 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
+var users = require('./routes/users');
 app.use(users);
 //app.use('/php',users);
 

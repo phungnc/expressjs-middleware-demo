@@ -21,5 +21,3 @@ exports.findUser = function findUser(name) {
     if (user.name === name) return user; else return false;
   });
 };
-
-//module.exports = findUser;
