@@ -15,9 +15,8 @@ var userData = [
   }
 ];
 
-exports.findUser = function findUser(name) {
-  userData.find(function(user) {
-    console.log(user.name);
-    if (user.name === name) return user; else return false;
+exports.findUser = function(name) {
+  return userData.find(function (user) {
+    return user.name == name;
   });
-};
+}
