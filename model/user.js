@@ -15,7 +15,7 @@ var userData = [
   }
 ];
 
-exports.findUser(name) {
+exports.findUser = function(name) {
   return userData.find(function (user) {
     return user.name == name;
   });
