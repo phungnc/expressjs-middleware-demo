@@ -3,7 +3,7 @@ var userModel = require('../model/user.js');
 var User = {
   isExist: function(req, res, next) {
     var user = userModel.findUser(req.query.user);
-    if(user === false) {
+    if(user === undefined) {
       var err = new Error('Not Found');
       err.status = 404;
       next(err);
