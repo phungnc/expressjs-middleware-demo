@@ -16,16 +16,15 @@ var userData = [
 ];
 
 function findUser(name) {
-  userData.find(function(user) {
-    console.log(user.name);
-    if (user.name === name) return user; else return false;
+  return userData.find(function (user) {
+    return user.name == name;
   });
 }
 
 var User = {
   isExist: function(req, res, next) {
     var user = findUser(req.query.user);
-    if(user === false) {
+    if( user === undefined) {
       var err = new Error('Not Found');
       err.status = 404;
       next(err);
